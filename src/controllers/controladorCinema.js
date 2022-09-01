@@ -94,6 +94,8 @@ let peliculas = Array(
 
 //Recorriendo arreglo en JS
 
+let fila = document.getElementById("fila")
+
 peliculas.forEach(function(pelicula){
     //console.log(pelicula)
     console.log(pelicula.nombre)
@@ -103,4 +105,49 @@ peliculas.forEach(function(pelicula){
     console.log(pelicula.sinopsis)
     console.log(pelicula.clasificacion)
     console.log(pelicula.idioma)
+
+    //traversing (crear etiquetas de html desde js)
+    //1. creamos una columna para cada pelicula
+    let columna = document.createElement("div")
+    columna.classList.add("col")
+    //2. creamos una tarjeta para cada pelicula
+    let tarjeta = document.createElement("div")
+    tarjeta.classList.add("card","h-100")
+    //3. creamos una foto para cada pelicula
+    let poster = document.createElement("img")
+    poster.classList.add("card-img-top")
+    poster.src = pelicula.poster
+    //4. creamos un nombre para cada pelicula
+    let nombre = document.createElement("h3")
+    nombre.classList.add("card-title","text-center")
+    nombre.textContent = pelicula.nombre
+    //5. creamos el genero de cada pelicula
+    let genero = document.createElement("h6")
+    genero.classList.add("text-start")
+    genero.textContent = " Genero: "+pelicula.genero
+    //6. creamos el idioma de cada pelicula
+    let idioma = document.createElement("h6")
+    idioma.classList.add("text-start")
+    idioma.textContent = " Idioma: "+pelicula.idioma
+    //7. creamos la sinopsis de cada pelicula
+    let sinopsis = document.createElement("p")
+    sinopsis.classList.add("d-none")
+    sinopsis.textContent = " sinopsis: "+pelicula.sinopsis
+
+    
+
+    //Padres e Hijos    
+    tarjeta.appendChild(poster)
+    tarjeta.appendChild(nombre)
+    tarjeta.appendChild(genero)
+    tarjeta.appendChild(idioma)
+    tarjeta.appendChild(sinopsis)
+    columna.appendChild(tarjeta)
+    fila.appendChild(columna)   
+
+})
+
+//Detectando seleccionde una pelicula
+fila.addEventListener("click",function(){
+    alert("Esta seleccionando una pelicula")
 })
